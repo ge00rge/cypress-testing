@@ -69,20 +69,20 @@ Hooks are functions executed at specific times around your tests
 
 Notes from: https://docs.cypress.io/api/table-of-contents
 
-**visit**: run at beggining of all your tests. 
+- **visit**: run at beggining of all your tests. 
 		   allows you to visit different website pages.
 
-**get**: used to find elements on the page.
+- **get**: used to find elements on the page.
 		1st param: any css selector (by tag , className, attribute)
 				   ex: cy.get('img') will find all images on the page.
 	    		   cypress recommends using specific-attribute when reaching out to elements (because of their uniqueness)
 	    		   ex: `cy.get('[data-cy="header-about-link"]').click()`
 
-**contains**: allow us to look for a certain text.
+- **contains**: allow us to look for a certain text.
 			 also yields the elements that contain a specific text.
 			 allow us to look for partial text.
 
-**should**: specifies explicit assertions.
+- **should**: specifies explicit assertions.
 		   
 the number of arguments passed depends on the first argument which is the assertion.
     Ex: s`hould('have.length', 1)` vs `should('exist')` won't need a second arg.
@@ -101,39 +101,39 @@ instead of: `.should('have.attr', 'class').and('match', /invalid/);`
 
 Typically, multiple chained should all refer to the original subject, for example to the original element. But if you are, for example using should to check for a specific attribute, like the class attribute, a chained should thereafter would receive the value of that attribute
 
-**and**: alias for 'should'
+- **and**: alias for 'should'
         make overall sentence more readable
         purely stylistic readability thing
 
-**find**: finds all the elements that were found by the previous 'get'
+- **find**: finds all the elements that were found by the previous 'get'
 
-**click**: chained command that simulate action of clicking something.
+- **click**: chained command that simulate action of clicking something.
 		  click can recieve a config object. 
 		  ex: .click({force: true}) this will force cypress to click a specific element class.
 
-**type**: chained command that simulate action of typing something.
+- **type**: chained command that simulate action of typing something.
 		 Types specific text after a get method.
 
-**select**: chained command that simulate action of selecting something.
+- **select**: chained command that simulate action of selecting something.
 		   Selects an element from a dropdown.
 
-**first**: chained command. First element from a list of el.
+- **first**: chained command. First element from a list of el.
 
-**last**: chained command.
+- **last**: chained command.
 		 first element from a list of el.
 
-**eq**: get a specific element selected by index.
+- **eq**: get a specific element selected by index.
 
-**location**: allows us to get information on where we are currently in a website.
+- **location**: allows us to get information on where we are currently in a website.
 
-**go**: simulate clicking back or forward button.
+- **go**: simulate clicking back or forward button.
 
-**as**: chained command.
+- **as**: chained command.
 	   alias that can later be used in a get method with cy.get('@<alias>')
 	   better to use this than constants.
 	   aliases can be assigned to all kinds of data, not only dom elements.
 
-**then**: enables you to work with the subject yielded from the previous command.
+- **then**: enables you to work with the subject yielded from the previous command.
          alternative way of writing tests to traditional cypress approach.
 	     gives you more access to the different properties the DOM element might have. 
 	     allows to manipulate an element as part of the test, check if a specific class is set, check the value of an attribute
@@ -141,74 +141,73 @@ Typically, multiple chained should all refer to the original subject, for exampl
 	     https://docs.cypress.io/guides/references/assertions
 	     avoid when necessary.
 
-**blur**: check if a specific element has gained focus.
+- **blur**: check if a specific element has gained focus.
 		 
-**parent**: chained command.
+- **parent**: chained command.
 		   get the parent element.
 
-**children**: chained command.
+- **children**: chained command.
 		     get the children element.
 
-**focus**: chained command.
+- **focus**: chained command.
 		  force to focus an element.
 
-**screenshot**: create screenshot at a given point in the code when we run npx cypress run.
+- **screenshot**: create screenshot at a given point in the code when we run npx cypress run.
 
-**now**: allows execute cypress method instantly instead of creating instruction that is queued.
+- **now**: allows execute cypress method instantly instead of creating instruction that is queued.
 		use only if we define custom queries so that test don't fail while running in headless mode.
 
-**task**: we trigger an event that should be runned outside of the browser (defined in the cypress.config.js)
+- **task**: we trigger an event that should be runned outside of the browser (defined in the cypress.config.js)
 		 we can trigger the event from the cypress test any moment during the test run.
 		 as param we pass the name of the task you want to execute.
 		 we can chain then() to the task() to do something with the retrieved value
 
-**stub**: replace existing function by another one defined by us.
+- **stub**: replace existing function by another one defined by us.
 
-**callsFake**: chained to stub.
+- **callsFake**: chained to stub.
 			  pass a callback function as arg that will be used instead of the empty stubbed implementation.
 
-**resolves**: to make sure that our stub returns a promise
+- **resolves**: to make sure that our stub returns a promise
 
-**fixture**: to access fixture data.
+- **fixture**: to access fixture data.
 			as param we pass name of file inside the fixtures folder.
 			follow by 'as' to set an alias and then call it wherever needed.
 
-**clock**: tell cypress we want to manipulate timers.
+- **clock**: tell cypress we want to manipulate timers.
 
-**tick**: allows you to advance time by a certain amount of milliseconds.
+- **tick**: allows you to advance time by a certain amount of milliseconds.
          tick works with clock.
 
-**intercept**: intercepts http requests.
+- **intercept**: intercepts http requests.
 			  VIP -> sets up interceptor that watchs for certain kinds of http requests, block the HTTP request and return some dummy response instead of actually hitting the backend.
 			  as params we pass: 1-type of request
 			  					 2-request the frontend performs to the api
 			  					 3-dummy response that should be returned by the request.
 
-**wait**: goes with intercept.
+- **wait**: goes with intercept.
  		 as param will receive the alias we used for the intercept
  		 its function is to wait for the request to be sent and intercepted.
  		 the next instruction will only be executed by Cypress after it observed this HTTP request and after it blocked and stubbed this http request.
  		 this check only is executed after the HTTP request was sent.
  		 wait for the intercept to be detected
 
-**request**: used to make HTTP requests within your Cypress test scripts
+- **request**: used to make HTTP requests within your Cypress test scripts
  			 allows you to interact with web APIs, send HTTP requests, and receive responses for testing purposes
 
-**cookie**: check for a cookie in the browser.
+- **cookie**: check for a cookie in the browser.
  			pass as param the name of the cookie.
 
-**its**: chained method.
+- **its**: chained method.
  	     to look to the individual propertes of an object (ex: cookie).
  	     as param , we specify the property.
 
-
 **Stubbing, Spying, and Fixtures**
 
-**Stubs**: Replace existing functions with hardcoded implementations to return a predefined value.	
+- **Stubs**: Replace existing functions with hardcoded implementations to return a predefined value.	
 
-**Spies**: Attach listeners to existing functions to determine if, and how, they were called.	
+- **Spies**: Attach listeners to existing functions to determine if, and how, they were called.	
 
-**Fixtures**: Fixed, shared dummy data stored in files (usually in the fixtures folder) that can be used across tests.
+- **Fixtures**: Fixed, shared dummy data stored in files (usually in the fixtures folder) that can be used across tests.
 
 
 **Debugging and Screenshots**
